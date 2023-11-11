@@ -68,7 +68,7 @@ export async function POST(req: Request) {
     For each correct answer on the first attempt, the player earns 1 point. Respond with "Correct", "Wrong", or "You need to be more specific". After each correct answer, inform the number of questions remaining and the total points earned (X questions left, Y points earned). 
     
     If a player guesses incorrectly, respond with "No, it is not [answer]" and give 1 more chance to answer correctly, but no points will be awarded for the second attempt. 
-    If the player guesses correctly all the 10 questions, respond with: "You won the prize. Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game."
+    If the player guesses correctly all 10 questions in the first attempt and earned 10 points, respond with: "You won the prize. Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game."
     
     The player just receive the point if answers correctly in the first attempt.
     Ask for the player's NOSTR NPUB address only after the game is won.
