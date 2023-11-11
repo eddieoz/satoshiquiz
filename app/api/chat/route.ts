@@ -168,9 +168,7 @@ export async function POST(req: Request) {
     // console.log('Earned points: ', combinedMessages[combinedMessages.length-2].content)
   }
 
-  
-
-  if (!gameWon || questionCount <= maxQuestions+2) {
+  if (!gameWon || questionCount <= maxQuestions+3) {
     questionCount++;
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.chat.completions.create({
@@ -178,7 +176,7 @@ export async function POST(req: Request) {
       stream: true,
       messages: combinedMessages,
       temperature: 0.5,
-      max_tokens: 200,
+      max_tokens: 150,
     });
 
     // Convert the response into a friendly text-stream
