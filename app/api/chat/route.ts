@@ -23,6 +23,8 @@ export const runtime = 'edge';
 // send sats as a prize to the user
 async function sendSats(address: string) {
 
+  // TODO: implement Nostr Wallet Connect
+
   // console.log('sending sats to', address)
   // Define the Syndicate API endpoint
   const endpoint = process.env.NOSTR_ENDPOINT || '';
