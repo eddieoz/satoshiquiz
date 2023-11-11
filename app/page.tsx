@@ -30,7 +30,14 @@ export default function Chat() {
           </a>
         </p>
         <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
-          10 correct answers in a row will == some sats.
+          10 correct answers in a row will == some sats. But... this is a proof-of-concept and if something go wrong just ping me on{' '}
+          <a 
+            href="https://twitter.com/eddieoz"
+            className="text-blue-500 hover:underline"
+            target="_blank"
+          >
+            twitter
+          </a>
         </p>
       </div>
       <div className="flex flex-col w-full max-w-md pt-20 pb-48 mx-auto stretch">
