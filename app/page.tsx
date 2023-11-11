@@ -12,9 +12,9 @@ import Textarea from "react-textarea-autosize";
 import { toast } from "sonner";
 
 const examples = [
-  "Get me the top 5 stories on Hacker News in markdown table format. Use columns like title, link, score, and comments.",
-  "Summarize the comments in the top hacker news story.",
-  "What is the top story on Hacker News right now?",
+  "I'm ready, lets start!",
+  "Start the game",
+  "I know everything, lets go!",
 ];
 
 export default function Chat() {
@@ -100,12 +100,12 @@ export default function Chat() {
         <div className="border-gray-200sm:mx-0 mx-5 mt-20 max-w-screen-md rounded-md border sm:w-full">
           <div className="flex flex-col space-y-4 p-7 sm:p-10">
             <h1 className="text-lg font-semibold text-black">
-              Welcome to ChatHN!
+              Welcome to Satoshi Quiz!
             </h1>
             <p className="text-gray-500">
               This is an{" "}
               <a
-                href="https://github.com/steven-tey/chathn"
+                href="https://github.com/eddieoz/satoshiquiz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium underline underline-offset-4 transition-colors hover:text-black"
@@ -130,16 +130,7 @@ export default function Chat() {
               >
                 Vercel AI SDK
               </a>{" "}
-              to interact with the{" "}
-              <a
-                href="https://github.com/HackerNews/API"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium underline underline-offset-4 transition-colors hover:text-black"
-              >
-                Hacker News API
-              </a>{" "}
-              with natural language.
+              make a game using natural language.
             </p>
           </div>
           <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">
@@ -224,7 +215,7 @@ export default function Chat() {
           </a>
           .{" "}
           <a
-            href="https://github.com/steven-tey/chathn"
+            href="https://github.com/eddieoz/satoshiquiz"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
@@ -238,7 +229,7 @@ export default function Chat() {
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
           >
-            deploy your own
+            deploy your own based on the original template
           </a>
           .
         </p>
