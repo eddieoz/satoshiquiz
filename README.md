@@ -1,19 +1,12 @@
-<a href="https://satoshiquiz.eddieoz.com">
-  <img alt="Show your knowledge and make Satoshi Nakamoto happy, using natural language." src="/app/satoshi-quiz-logo.png">
-  <h1 align="center">Satoshi Quiz</h1>
-</a>
+# Satoshi Quiz GPT using Vercel AI SDK, Next.js, OpenAI, Nostr and Lightning Network
 
-<p align="center">
-  Show your knowledge about Bitcoin and earn points, using natural language. Built with OpenAI Functions and Vercel AI SDK. 
-</p>
+This example shows how to use the [Vercel AI SDK](https://sdk.vercel.ai/docs), [Next.js](https://nextjs.org), [OpenAI](https://openai.com),  to create a bitcoin-enabled GPT chat bot that can send Bitcoin transactions. In this example, the GPT is creating a quiz with 10 questions, and if the player can correctly answers all of them, the GPT will send the player a prize.
 
-<p align="center">
-  <a href="https://github.com/steven-tey/chathn/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/steven-tey/chathn?label=license&logo=github&color=f80&logoColor=fff" alt="License" />
-  </a>
-  <a href="https://github.com/eddieoz/satoshiquiz"><img src="https://img.shields.io/github/stars/eddieoz/satoshiquiz?style=social" alt="ChatHN's GitHub repo"></a>
-</p>
+## Requirements
 
+To create locally you need to:
+
+1. Sign up for [OpenAI's developer platform](https://platform.openai.com/signup) and create an API KEY.
 
 ## Tech Stack
 

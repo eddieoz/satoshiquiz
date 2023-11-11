@@ -10,36 +10,86 @@ let gameWon = false; // Initialize game state
 
 // Create an OpenAI API client (that's edge friendly!)
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || '',
 });
 
-export const runtime = "edge";
+// IMPORTANT! Set the runtime to edge
+export const runtime = 'edge';
 
-export async function POST(req: Request) {
-  if (
-    process.env.NODE_ENV !== "development" &&
-    process.env.KV_REST_API_URL &&
-    process.env.KV_REST_API_TOKEN
-  ) {
-    const ip = req.headers.get("x-forwarded-for");
-    const ratelimit = new Ratelimit({
-      redis: kv,
-      limiter: Ratelimit.slidingWindow(50, "1 d"),
+// send an NFT as a prize to the user
+async function sendNFT(ethAddress: string) {
+
+  // Define the Syndicate API endpoint
+  const endpoint = 'https://api.syndicate.io/transact/sendTransaction';
+
+  // Define the headers
+  const headers = {
+    'Authorization': `Bearer ${process.env.SYNDICATE_API_KEY}`,
+    'Content-Type': 'application/json'
+  };
+
+  // Define the body data
+  const bodyData = {
+    projectId: process.env.PROJECT_ID,
+    contractAddress: '0xbEc332E1eb3EE582B36F979BF803F98591BB9E24',
+    chainId: 80001,
+    functionSignature: 'mint(address account)',
+    args: {
+      account: ethAddress
+    }
+  };
+
+  // Sent the API request and return the response based on the status code
+  try {
+
+    // Send the API request to Syndicate
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(bodyData)
     });
 
-    const { success, limit, reset, remaining } = await ratelimit.limit(
-      `chathn_ratelimit_${ip}`,
-    );
+    // Parse the JSON response
+    const responseData = await response.json();
 
-    if (!success) {
-      return new Response("You have reached your request limit for the day.", {
-        status: 429,
-        headers: {
-          "X-RateLimit-Limit": limit.toString(),
-          "X-RateLimit-Remaining": remaining.toString(),
-          "X-RateLimit-Reset": reset.toString(),
-        },
-      });
+    // Check the response status
+    if (response.ok) {
+      // Transaction was successful
+      return { status: 'success', data: responseData };
+    } else {
+      // Handle errors with the transaction (e.g., 400, 500, etc.)
+      console.error('Error sending NFT:', responseData);
+      return { status: 'error', error: responseData };
+    }
+  } catch (error) {
+    // Handle network or parsing errors
+    console.error('Error:', error);
+    return { status: 'error', error };
+  }
+}
+
+// Get transaction hash from transactionId using Syndicate API with retry logic
+async function getTransactionHash(transactionId: string): Promise<string> {
+  let transactionHash = '';
+  const options = {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`
+    }
+  };
+
+  // Keep trying until the transaction hash is available
+  while (!transactionHash) {
+    try {
+      const response = await fetch(`https://api.syndicate.io/wallet/project/${process.env.PROJECT_ID}/request/${transactionId}`, options);
+      const data = await response.json();
+      transactionHash = data.transactionAttempts[0]?.hash || '';
+    } catch (error) {
+      console.error('Error getting transaction details:', error);
+    }
+    // Wati for a few seconds before retrying
+    if (!transactionHash) {
+      await new Promise(resolve => setTimeout(resolve, 5000));  // Wait for 5 seconds
     }
   }
 
@@ -152,5 +202,8 @@ export async function POST(req: Request) {
     max_tokens: 250,
   });
 
+  // Convert the response into a friendly text-stream
+  const stream = OpenAIStream(response);
+  // Respond with the stream
   return new StreamingTextResponse(stream);
 }
