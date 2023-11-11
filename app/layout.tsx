@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: '20 Questions with a Crypto-Enabled GPT',
-  description: 'Demo created in a couple hours with OpenAI and Syndicate.',
+  title: 'Test your knowledge about Bitcoin with ChatGPT',
+  description: 'Answer questions about Bitcoin and learn more about it with ChatGPT',
 };
 
 export default function RootLayout({
