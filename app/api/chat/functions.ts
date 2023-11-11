@@ -1,5 +1,6 @@
-import { CompletionCreateParams } from "openai/resources/chat/index";
+// import { CompletionCreateParams } from "openai/resources/chat/index";
 
+import { CompletionCreateParams } from "@openai/api";
 export const functions: CompletionCreateParams.Function[] = [
   {
     name: "get_top_stories",
