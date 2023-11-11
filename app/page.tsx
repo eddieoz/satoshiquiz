@@ -3,7 +3,7 @@ import { useChat } from 'ai/react';
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  let logo = '/satoshi-quiz-logo.png'
+  let logo = '/opengraph-image.png'
   return (
     <div>
       <div className="container mx-auto px-10 md:px-28">
