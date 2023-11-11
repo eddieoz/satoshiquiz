@@ -1,7 +1,7 @@
 // ./app/api/chat/route.ts
 import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 
 let questionCount = 0;  // Initialize question count
 let points = 0
@@ -16,90 +16,95 @@ const openai = new OpenAI({
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge';
 
-// send an NFT as a prize to the user
-async function sendNFT(ethAddress: string) {
+// // send an NFT as a prize to the user
+// async function sendNFT(ethAddress: string) {
 
-  // Define the Syndicate API endpoint
-  const endpoint = 'https://api.syndicate.io/transact/sendTransaction';
+//   // Define the Syndicate API endpoint
+//   const endpoint = 'https://api.syndicate.io/transact/sendTransaction';
 
-  // Define the headers
-  const headers = {
-    'Authorization': `Bearer ${process.env.SYNDICATE_API_KEY}`,
-    'Content-Type': 'application/json'
-  };
+//   // Define the headers
+//   const headers = {
+//     'Authorization': `Bearer ${process.env.SYNDICATE_API_KEY}`,
+//     'Content-Type': 'application/json'
+//   };
 
-  // Define the body data
-  const bodyData = {
-    projectId: process.env.PROJECT_ID,
-    contractAddress: '0xbEc332E1eb3EE582B36F979BF803F98591BB9E24',
-    chainId: 80001,
-    functionSignature: 'mint(address account)',
-    args: {
-      account: ethAddress
-    }
-  };
+//   // Define the body data
+//   const bodyData = {
+//     projectId: process.env.PROJECT_ID,
+//     contractAddress: '0xbEc332E1eb3EE582B36F979BF803F98591BB9E24',
+//     chainId: 80001,
+//     functionSignature: 'mint(address account)',
+//     args: {
+//       account: ethAddress
+//     }
+//   };
 
-  // Sent the API request and return the response based on the status code
-  try {
+//   // Sent the API request and return the response based on the status code
+//   try {
 
-    // Send the API request to Syndicate
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      headers,
-      body: JSON.stringify(bodyData)
-    });
+//     // Send the API request to Syndicate
+//     const response = await fetch(endpoint, {
+//       method: 'POST',
+//       headers,
+//       body: JSON.stringify(bodyData)
+//     });
 
-    // Parse the JSON response
-    const responseData = await response.json();
+//     // Parse the JSON response
+//     const responseData = await response.json();
 
-    // Check the response status
-    if (response.ok) {
-      // Transaction was successful
-      return { status: 'success', data: responseData };
-    } else {
-      // Handle errors with the transaction (e.g., 400, 500, etc.)
-      console.error('Error sending NFT:', responseData);
-      return { status: 'error', error: responseData };
-    }
-  } catch (error) {
-    // Handle network or parsing errors
-    console.error('Error:', error);
-    return { status: 'error', error };
-  }
-}
+//     // Check the response status
+//     if (response.ok) {
+//       // Transaction was successful
+//       return { status: 'success', data: responseData };
+//     } else {
+//       // Handle errors with the transaction (e.g., 400, 500, etc.)
+//       console.error('Error sending NFT:', responseData);
+//       return { status: 'error', error: responseData };
+//     }
+//   } catch (error) {
+//     // Handle network or parsing errors
+//     console.error('Error:', error);
+//     return { status: 'error', error };
+//   }
+// }
 
-// Get transaction hash from transactionId using Syndicate API with retry logic
-async function getTransactionHash(transactionId: string): Promise<string> {
-  let transactionHash = '';
-  const options = {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`
-    }
-  };
+// // Get transaction hash from transactionId using Syndicate API with retry logic
+// async function getTransactionHash(transactionId: string): Promise<string> {
+//   let transactionHash = '';
+//   const options = {
+//     method: 'GET',
+//     headers: {
+//       Authorization: `Bearer ${process.env.SYNDICATE_API_KEY}`
+//     }
+//   };
 
-  // Keep trying until the transaction hash is available
-  while (!transactionHash) {
-    try {
-      const response = await fetch(`https://api.syndicate.io/wallet/project/${process.env.PROJECT_ID}/request/${transactionId}`, options);
-      const data = await response.json();
-      transactionHash = data.transactionAttempts[0]?.hash || '';
-    } catch (error) {
-      console.error('Error getting transaction details:', error);
-    }
-    // Wati for a few seconds before retrying
-    if (!transactionHash) {
-      await new Promise(resolve => setTimeout(resolve, 5000));  // Wait for 5 seconds
-    }
-  }
+//   // Keep trying until the transaction hash is available
+//   while (!transactionHash) {
+//     try {
+//       const response = await fetch(`https://api.syndicate.io/wallet/project/${process.env.PROJECT_ID}/request/${transactionId}`, options);
+//       const data = await response.json();
+//       transactionHash = data.transactionAttempts[0]?.hash || '';
+//     } catch (error) {
+//       console.error('Error getting transaction details:', error);
+//     }
+//     // Wati for a few seconds before retrying
+//     if (!transactionHash) {
+//       await new Promise(resolve => setTimeout(resolve, 5000));  // Wait for 5 seconds
+//     }
+//   }
 
-  return transactionHash;
-}
+//   return transactionHash;
+// }
 
 // Main chat route
 export async function POST(req: Request) {
 
   // If the game has already been won and the prize has been sent
+  if (questionCount === 10 && points === 10) {
+    
+    // Update the game state to won
+    gameWon = true;
+  }
 
   if (gameWon) {
     const gameEndMessage = new TextEncoder().encode("You won the prize. Congratulations!");
@@ -155,10 +160,10 @@ export async function POST(req: Request) {
   }
 
   // If the user guesses all 10 questions correctly, send them the prize
-  if (questionCount === 10 && points === 10) {
+  // if (questionCount === 10 && points === 10) {
     
-    // Update the game state to won
-    gameWon = true;
+  //   // Update the game state to won
+  //   gameWon = true;
 
     // // Send the prize NFT to the user's Ethereum address
     // const ethAddress = combinedMessages[combinedMessages.length - 1].content;
@@ -189,7 +194,7 @@ export async function POST(req: Request) {
     //   }));
     // }
 
-  }
+  // }
   // Update the questions asked count
   questionCount++;
 
