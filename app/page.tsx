@@ -12,17 +12,17 @@ export default function Chat() {
         <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
           This demo was built with just Next.js, OpenAI's API, and{' '}
           <a 
-            href="https://docs.syndicate.io"
+            href="https://github.com/eddieoz/nostr-blokitos-sats"
             className="text-blue-500 hover:underline"
             target="_blank"
           >
-            Syndicate's Transaction Cloud API.
+            Nostr Blokitos Sats APIs.
           </a>
           </p>
           <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
-            No custom backend for keys, wallets, transactions, gas, or RPCs was required. Check out the repo{' '}
+            To receive the prize, you need a valid Nostr account with your LN Address linked to your profile. Check out the repo{' '}
           <a 
-            href="https://github.com/ianDAOs/demo-crypto-llm-20questions"
+            href="https://github.com/eddieoz/satoshiquiz"
             className="text-blue-500 hover:underline"
             target="_blank"
           >
