@@ -7,8 +7,8 @@ export default function Chat() {
   return (
     <div>
       <div className="container mx-auto px-10 md:px-28">
-        <h1 className="text-4xl font-bold text-center pt-20 pb-6">Test your knowledge about Bitcoin with ChatGPT</h1>
-        <h2 className="text-md md:text-xl font-light text-center pb-8 px-8 lg:px-26">I'm creating 10 questions about Bitcoin. If you can correctly answer all the questions, I'll send you gift. Let's play.</h2>
+        <h1 className="text-4xl font-bold text-center pt-20 pb-6">Test your knowledge about Bitcoin with ChatGPT and earn Sats!</h1>
+        <h2 className="text-md md:text-xl font-light text-center pb-8 px-8 lg:px-26">I'm creating 10 questions about Bitcoin. If you can correctly answer all the questions, I'll send you gift. <br />Prepare your Nostr Npub and let's play.</h2>
         <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
           This demo was built with just Next.js, OpenAI's API, and{' '}
           <a 
@@ -20,7 +20,7 @@ export default function Chat() {
           </a>
           </p>
           <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
-            To receive the prize, you need a valid Nostr account with your LN Address linked to your profile. Check out the repo{' '}
+            To receive the prize, <b>you need a valid NOSTR account with your LN Address</b> linked to your profile. Check out the repo{' '}
           <a 
             href="https://github.com/eddieoz/satoshiquiz"
             className="text-blue-500 hover:underline"
