@@ -42,31 +42,16 @@ export default function Chat() {
   const disabled = isLoading || input.length === 0;
 
   return (
-    <main className="flex flex-col items-center justify-between pb-40">
-      <div className="absolute top-5 hidden w-full justify-between px-5 sm:flex">
-        <a
-          href="/deploy"
-          target="_blank"
-          className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
-        >
-          <VercelIcon />
-        </a>
-        <a
-          href="/github"
-          target="_blank"
-          className="rounded-lg p-2 transition-colors duration-200 hover:bg-stone-100 sm:bottom-auto"
-        >
-          <GithubIcon />
-        </a>
-      </div>
-      {messages.length > 0 ? (
-        messages.map((message, i) => (
-          <div
-            key={i}
-            className={clsx(
-              "flex w-full items-center justify-center border-b border-gray-200 py-8",
-              message.role === "user" ? "bg-white" : "bg-gray-100",
-            )}
+    <div>
+      <div className="container mx-auto px-10 md:px-28">
+        <h1 className="text-4xl font-bold text-center pt-20 pb-6">Test your knowledge about Bitcoin with ChatGPT</h1>
+        <h2 className="text-md md:text-xl font-light text-center pb-8 px-8 lg:px-26">I'm creating 10 questions about Bitcoin. If you can correctly answer all the questions, I'll send you gift. Let's play.</h2>
+        <p className="text-xs font-extralight text-gray-500 text-center xs:px-24">
+          This demo was built with just Next.js, OpenAI's API, and{' '}
+          <a 
+            href="https://docs.syndicate.io"
+            className="text-blue-500 hover:underline"
+            target="_blank"
           >
             <div className="flex w-full max-w-screen-md items-start space-x-4 px-5 sm:px-0">
               <div
@@ -234,6 +219,25 @@ export default function Chat() {
           .
         </p>
       </div>
-    </main>
+      <div className="flex flex-col w-full max-w-md pt-20 pb-48 mx-auto stretch">
+        {messages.length > 0
+          ? messages.map((m, index) => (
+              <div key={index} className="whitespace-pre-wrap py-1">
+                {m.role === 'user' ? <span className="text-lg font-bold text-cyan-600">You: </span>: <span className="text-lg font-bold text-purple-600">Satoshi Quiz: </span>}
+                {m.role === 'assistant' ? m.content : m.content}
+              </div>
+            ))
+          : null}
+
+        <form onSubmit={handleSubmit}>
+          <input
+            className="fixed bottom-10 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
+            value={input}
+            placeholder="Ask your question..."
+            onChange={handleInputChange}
+          />
+        </form>
+      </div>
+    </div>
   );
 }

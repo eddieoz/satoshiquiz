@@ -29,13 +29,14 @@ ChatH is built on the following stack:
 
 Here's how you can contribute:
 
-- [Open an issue](https://github.com/steven-tey/chathn/issues) if you believe you've encountered a bug.
-- Make a [pull request](https://github.com/steven-tey/chathn/pull) to add new features/make quality-of-life improvements/fix bugs.
+- [Open an issue](https://github.com/eddieoz/satoshiquiz/issues) if you believe you've encountered a bug.
+- Make a [pull request](https://github.com/eddieoz/satoshiquiz/pull) to add new features/make quality-of-life improvements/fix bugs.
 
 ## Author
-- EddieOz ([@eddieoz](https://twitter.com/eddieoz))
-- Repo cloned from Steven Tey ([@steventey](https://twitter.com/steventey))
+
+- Eddieoz ([@eddieoz](https://twitter.com/eddieoz))
+- Forked from ianDAOs ([@ianDAOs](https://github.com/ianDAOs/demo-crypto-llm-20questions_))
 
 ## License
 
-Licensed under the [MIT license](https://github.com/steven-tey/chathn/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/eddieoz/satoshiquiz/blob/main/LICENSE.md).
