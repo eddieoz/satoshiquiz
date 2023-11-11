@@ -3,7 +3,7 @@ import { useChat } from 'ai/react';
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-
+  let logo = '/satoshi-quiz-logo.png'
   return (
     <div>
       <div className="container mx-auto px-10 md:px-28">
@@ -37,7 +37,14 @@ export default function Chat() {
         {messages.length > 0
           ? messages.map((m, index) => (
               <div key={index} className="whitespace-pre-wrap py-1">
-                {m.role === 'user' ? <span className="text-lg font-bold text-cyan-600">You: </span>: <span className="text-lg font-bold text-purple-600">Satoshi Quiz: </span>}
+                {m.role === 'user' ? 
+                  <span className="text-lg font-bold text-cyan-600">You: </span>
+                : 
+                  <>
+                    <img src={logo} alt="Satoshi Quiz" className="inline-block w-8 h-8 mr-2 rounded-full" />
+                    <span className="text-lg font-bold text-purple-600">Satoshi Quiz: </span>
+                  </>
+                }
                 {m.role === 'assistant' ? m.content : m.content}
               </div>
             ))
