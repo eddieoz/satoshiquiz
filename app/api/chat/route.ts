@@ -33,11 +33,11 @@ async function sendSats(address: string) {
   // Define the Syndicate API endpoint
   const endpoint = process.env.NOSTR_ENDPOINT || '';
 
-    // Sent the API request and return the response based on the status code
+  // Sent the API request and return the response based on the status code
   try {
 
     // Send the API request to Syndicate
-    const response = await fetch(endpoint+address.trim(), {
+    const response = await fetch(endpoint + address.trim(), {
       method: 'GET',
     });
 
@@ -125,7 +125,7 @@ export async function POST(req: Request) {
     console.log('game won')
 
     let sendPrize = true;
-    
+
     // Send the prize NFT to the user's NOSTR address
     const nostrAddress = combinedMessages[combinedMessages.length - 1].content.trim();
 
@@ -144,7 +144,7 @@ export async function POST(req: Request) {
     }
     points = 0;
     questionCount = 0;
-    
+
     if (sendPrize) {
       const sendNostrResponse = await sendSats(nostrAddress);
       // If the prize was sent successfully, send a message to the user, else send an error message
@@ -165,7 +165,7 @@ export async function POST(req: Request) {
           }
         }));
       }
-    } 
+    }
   }
 
   if (gameWon && gameRunning) {
@@ -180,7 +180,7 @@ export async function POST(req: Request) {
   }
 
   // If the game hasn't been won and the max questions have been asked, end the game
-  if (!gameWon && questionCount > maxQuestions*2 && gameRunning) {
+  if (!gameWon && questionCount > maxQuestions * 2 && gameRunning) {
     gameRunning = false;
     const gameEndMessage = new TextEncoder().encode("You've run out of questions! So close.");
     return new StreamingTextResponse(new ReadableStream({
@@ -190,22 +190,22 @@ export async function POST(req: Request) {
       }
     }));
   }
-  
-  
+
+
   // If it finds 'Congratulations', but the point are < maxPoints, then avoid cheating
-  if (combinedMessages[combinedMessages.length-2].content.includes('Congratulations') && !combinedMessages[combinedMessages.length-2].role.includes('system') && points < maxPoints) {
+  if (combinedMessages[combinedMessages.length - 2].content.includes('Congratulations') && !combinedMessages[combinedMessages.length - 2].role.includes('system') && points < maxPoints) {
     questionCount = 100;
     points = 0;
     gameRunning = false;
   }
 
-  if (combinedMessages[combinedMessages.length-2].content.includes('Great! You finished the quiz') && !combinedMessages[combinedMessages.length-2].role.includes('system')) {
+  if (combinedMessages[combinedMessages.length - 2].content.includes('Great! You finished the quiz') && !combinedMessages[combinedMessages.length - 2].role.includes('system')) {
     points = 0;
     questionCount = 0;
     gameRunning = false;
   }
-  
-  if (combinedMessages[combinedMessages.length-2].content.includes('You need to guess') && !combinedMessages[combinedMessages.length-2].role.includes('system') && points < maxPoints) {
+
+  if (combinedMessages[combinedMessages.length - 2].content.includes('You need to guess') && !combinedMessages[combinedMessages.length - 2].role.includes('system') && points < maxPoints) {
     nPenalty++;
   }
 
@@ -222,7 +222,7 @@ export async function POST(req: Request) {
     }));
   }
 
-  if (!gameRunning){
+  if (!gameRunning) {
     const gameEndMessage = new TextEncoder().encode("You've run out of questions!");
     points = 0;
     questionCount = 0;
@@ -236,12 +236,12 @@ export async function POST(req: Request) {
 
   // Update the questions asked count
   // if the user guesses the correct answer, award them a point
-  if (!gameWon && combinedMessages[combinedMessages.length-2].content.includes('Correct') && !combinedMessages[combinedMessages.length-2].role.includes('system') && !combinedMessages[combinedMessages.length-2].role.includes('user')) {
+  if (!gameWon && combinedMessages[combinedMessages.length - 2].content.includes('Correct') && !combinedMessages[combinedMessages.length - 2].role.includes('system') && !combinedMessages[combinedMessages.length - 2].role.includes('user')) {
     points++;
 
-    if (points === maxPoints && questionCount <= maxQuestions*2 && gameRunning){
-      
-      const gameEndMessage = new TextEncoder().encode("You made " + points + "points!! Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game.");
+    if (points === maxPoints && questionCount <= maxQuestions * 2 && gameRunning) {
+
+      const gameEndMessage = new TextEncoder().encode("You made " + points + " points!! Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game.");
       gameWon = true;
       return new StreamingTextResponse(new ReadableStream({
         start(controller) {
@@ -253,7 +253,7 @@ export async function POST(req: Request) {
     // console.log('Earned points: ', combinedMessages[combinedMessages.length-2].content)
   }
 
-  if (!gameWon && questionCount <= maxQuestions*2 && gameRunning && points <= maxPoints) {
+  if (!gameWon && questionCount <= maxQuestions * 2 && gameRunning && points <= maxPoints) {
     questionCount++;
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.chat.completions.create({
@@ -270,5 +270,4 @@ export async function POST(req: Request) {
     return new StreamingTextResponse(stream);
   }
 
-  
 }
