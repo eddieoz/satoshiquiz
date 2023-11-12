@@ -200,8 +200,7 @@ export default function Chat() {
       </div>
       
       <div className="fixed bottom-0 flex w-full flex-col items-right space-y-3 p-5 pb-3 sm:px-0">
-        <p className="text-right text-xs text-gray-400">
-          Send sats if you liked:{" "}
+        <p className="text-right text-xs text-gray-400 mr-5">
           <a
             href="lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M"
             target="_blank"
@@ -211,9 +210,9 @@ export default function Chat() {
             <img
               src="https://www.eddieoz.com/content/images/2023/11/qr-code-bloco.png"
               alt="Lightning Tips"
-              className="inline-block w-32 h-32 mr-2"
+              className="inline-block w-32 h-32 mr-1"
             />
-          </a>
+          </a><br />⚡ Support the Quiz ⚡<br />
         </p>
       </div>
     </main>
