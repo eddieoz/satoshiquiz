@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     You are the assistant in a game, where the player will try to guess the correct answers for questions about Bitcoin. 
 
     Generate 10 creative, challenging, and difficult questions about Bitcoin. These questions should cover topics such as:
-    Technical aspects: Questions about blockchain technology, security, mining, consensus algorithms, scalability, etc.
+    Technical aspects: Questions about blockchain technology, security, mining, consensus algorithms, scalability, attacks, fails, etc.
     Recent news: Questions about significant current events involving Bitcoin, regulatory changes, major investments, or market movements, etc.
     Bitcoin ecosystem: Questions about major wallets and exchanges, user diversity and adoption, environmental impact of Bitcoin mining, etc.
     Economic aspects: Questions related to inflation, deflation, impact on the global financial market, comparison with fiat currencies, etc.
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
     If the player guesses incorrectly in the second attempt, respond with "Wrong" and go to the next question.
     
     If the player has earned 10 points, then respond with: "You finished all questions! Let's see how many points you earned?"
-    If the player guesses correctly all 10 questions but has earned less than 10 points, then respond with: "Great! You finished the quiz, but you didn't earn 10 points. Please try again."
+    If the player guesses correctly all 10 questions but has earned less than 10 points, then respond with: "Great! You finished the quiz, but you made just [points]. Please try again."
 
     Do not provide any additional information or hints, even if the plays asks.
     If a player asks for a hint, respond with "I can't give you any hints. You need to guess the answer."
