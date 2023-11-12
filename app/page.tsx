@@ -186,20 +186,19 @@ export default function Chat() {
           >
             @eddieoz
           </a>{" "}
-          .{" "}
+          . Support the Quiz: {" "}
           <a
-            href="https://github.com/eddieoz/satoshiquiz"
+            href="lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
           >
-            View the repo
+            ⚡ eddieoz@sats4.life
           </a>
-          .
         </p>
       </div>
       
-      <div className="absolute bottom-0 hidden w-full flex w-full flex-col items-right space-y-3 p-5 pb-3 sm:px-0">
+      <div className="fixed bottom-0 hidden w-full flex flex-col items-right px-0 sm:flex">
         <p className="text-right text-xs text-gray-400 mr-5">
           <a
             href="lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M"
