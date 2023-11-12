@@ -10,13 +10,16 @@ To create locally you need to:
 
 ## Tech Stack
 
-ChatH is built on the following stack:
+Satoshi Quiz is built on the following stack:
 
 - [Next.js](https://nextjs.org/) – framework
 - [OpenAI Functions](https://platform.openai.com/docs/guides/gpt/function-calling) - AI completions
 - [Vercel AI SDK](https://sdk.vercel.ai/docs) – AI streaming library
 - [Vercel](https://vercel.com) – deployments
 - [TailwindCSS](https://tailwindcss.com/) – styles
+- [Nostr](https://github.com/nbd-wtf/nostr-tools) - Nostr zaps
+- [Alby](https://github.com/getAlby/js-lightning-tools) - Lightning tools
+- [Nostr Blokitos Sats](https://github.com/eddieoz/nostr-blokitos-sats) - Implementation of a bot for Nostr and Alby
 
 ## Contributing
 
@@ -28,7 +31,7 @@ Here's how you can contribute:
 ## Author
 
 - Eddieoz ([@eddieoz](https://twitter.com/eddieoz))
-- Forked from ianDAOs ([@ianDAOs](https://github.com/ianDAOs/demo-crypto-llm-20questions_))
+- From the initial work of ([@ianDAOs](https://github.com/ianDAOs/demo-crypto-llm-20questions_)) and ([@steven-tey](https://github.com/steven-tey/chathn))
 
 ## License
 

@@ -177,24 +177,15 @@ export default function Chat() {
           </button>
         </form>
         <p className="text-center text-xs text-gray-400">
-          Built with{" "}
+          Built by {" "}
           <a
-            href="https://platform.openai.com/docs/guides/gpt/function-calling"
+            href="https://primal.net/p/npub1atrrqav7xyur93xszyaeuyyzy70mpmax488grndfaz3kddyc3dyquawyga"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
           >
-            OpenAI Functions
+            @eddieoz
           </a>{" "}
-          and{" "}
-          <a
-            href="https://sdk.vercel.ai/docs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-black"
-          >
-            Vercel AI SDK
-          </a>
           .{" "}
           <a
             href="https://github.com/eddieoz/satoshiquiz"
