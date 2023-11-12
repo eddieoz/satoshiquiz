@@ -30,9 +30,17 @@ Here's how you can contribute:
 
 ## Author
 
-- Eddieoz ([@eddieoz](https://twitter.com/eddieoz))
+- EddieOz ([@eddieoz](https://twitter.com/eddieoz)) && ([eddieoz@sats4.life](https://primal.net/p/npub1atrrqav7xyur93xszyaeuyyzy70mpmax488grndfaz3kddyc3dyquawyga))
 - From the initial work of ([@ianDAOs](https://github.com/ianDAOs/demo-crypto-llm-20questions_)) and ([@steven-tey](https://github.com/steven-tey/chathn))
 
 ## License
 
 Licensed under the [MIT license](https://github.com/eddieoz/satoshiquiz/blob/main/LICENSE.md).
+
+## Buy me a coffee
+Did you like it? [Buy me a coffee](https://www.buymeacoffee.com/eddieoz)
+
+[![Buy me a coffee](https://ipfs.io/ipfs/QmR6W4L3XiozMQc3EjfFeqSkcbu3cWnhZBn38z2W2FuTMZ?filename=buymeacoffee.webp)](https://www.buymeacoffee.com/eddieoz)
+
+Drop me a tip through Lightning Network: ⚡ [zbd.gg/eddieoz](https://zbd.gg/eddieoz)
+Or a zap through Nostr: [eddieoz@sats4.life](https://primal.net/p/npub1atrrqav7xyur93xszyaeuyyzy70mpmax488grndfaz3kddyc3dyquawyga)
