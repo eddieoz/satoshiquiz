@@ -243,7 +243,7 @@ export async function POST(req: Request) {
       stream: true,
       messages: combinedMessages,
       temperature: 0.5,
-      max_tokens: 150,
+      max_tokens: 100,
     });
 
     // Convert the response into a friendly text-stream
