@@ -188,12 +188,12 @@ export default function Chat() {
           </a>{" "}
           . Support the Quiz: {" "}
           <a
-            href="lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M"
+            href="lightning:LNURL1DP68GURN8GHJ7UMPW3ENGTNVD9NX2TMVDE6HYMRS9ASHX5NPFVESELDEJX"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
           >
-            ⚡ eddieoz@sats4.life
+            ⚡ satoshiquiz@sats4.life
           </a>
         </p>
       </div>
@@ -201,7 +201,7 @@ export default function Chat() {
       <div className="fixed bottom-0 hidden w-full flex flex-col items-right px-0 sm:flex">
         <p className="text-right text-xs text-gray-400 mr-5">
           <a
-            href="lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M"
+            href="lightning:LNURL1DP68GURN8GHJ7UMPW3ENGTNVD9NX2TMVDE6HYMRS9ASHX5NPFVESELDEJX"
             target="_blank"
             rel="noopener noreferrer"
             className="transition-colors hover:text-black"
