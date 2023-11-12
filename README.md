@@ -45,4 +45,6 @@ Did you like it? [Buy me a coffee](https://www.buymeacoffee.com/eddieoz)
 
 A zap through Nostr: [eddieoz@sats4.life](https://primal.net/p/npub1atrrqav7xyur93xszyaeuyyzy70mpmax488grndfaz3kddyc3dyquawyga)
 
-Drop me a tip through Lightning Network: ⚡ eddieoz@sats4.life [![](https://www.eddieoz.com/content/images/2023/11/qr-code-bloco.png)](lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M)
+[![](https://www.eddieoz.com/content/images/2023/11/qr-code-bloco.png)](lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M)
+
+Drop me a tip through Lightning Network: [⚡ eddieoz@sats4.life](lightning:LNURL1DP68GURN8GHJ7AMPD3KX2APWWDSHGUE59EKXJEN99AKXUATJD3CZ7MT6V9XXZ4QC0JK6M) 
