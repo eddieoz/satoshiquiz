@@ -64,6 +64,22 @@ export default function Chat() {
           <GithubIcon />
         </a>
       </div>
+      <div className="fixed bottom-20 hidden w-full flex flex-col items-right px-0 sm:flex">
+        <p className="text-right text-xs text-gray-400 mr-5">
+          <a
+            href="lightning:LNURL1DP68GURN8GHJ7UMPW3ENGTNVD9NX2TMVDE6HYMRS9ASHX5NPFVESELDEJX"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-black"
+          >
+            <img
+              src="https://www.eddieoz.com/content/images/2023/11/qr-code-bloco.png"
+              alt="Lightning Tips"
+              className="inline-block w-32 h-32 mr-1"
+            />
+          </a><br />⚡ Support the Quiz ⚡<br />
+        </p>
+      </div>
       {messages.length > 0 ? (
         messages.map((message, i) => (
           <div
@@ -131,7 +147,7 @@ export default function Chat() {
           </div>
         </div>
       )}
-      <div className="fixed bottom-0 flex w-full flex-col items-center space-y-3 bg-gradient-to-b from-transparent via-gray-100 to-gray-100 p-5 pb-3 sm:px-0">
+      <div className="fixed bottom-0 flex w-full flex-col items-center space-y-3 p-5 pb-3 sm:px-0">
         <form
           ref={formRef}
           onSubmit={handleSubmit}
@@ -198,22 +214,7 @@ export default function Chat() {
         </p>
       </div>
       
-      {/* <div className="fixed bottom-0 hidden w-full flex flex-col items-right px-0 sm:flex">
-        <p className="text-right text-xs text-gray-400 mr-5">
-          <a
-            href="lightning:LNURL1DP68GURN8GHJ7UMPW3ENGTNVD9NX2TMVDE6HYMRS9ASHX5NPFVESELDEJX"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-black"
-          >
-            <img
-              src="https://www.eddieoz.com/content/images/2023/11/qr-code-bloco.png"
-              alt="Lightning Tips"
-              className="inline-block w-32 h-32 mr-1"
-            />
-          </a><br />⚡ Support the Quiz ⚡<br />
-        </p>
-      </div> */}
+      
     </main>
   );
 }
