@@ -8,13 +8,13 @@ let questionCount = 0;  // Initialize question count
 const maxQuestions = 10;  // Set max questions
 let points = 0
 const maxPoints = 10;  // Set max points
-let gameWon = false; // Initialize game state
-const maxNpubChances = 1; // Set max chances to enter NOSTR NPUB address
 let npubChances = 0; // Initialize NOSTR NPUB address chances
-const maxPenalty = 1; // Set max chances to enter NOSTR NPUB address
+const maxNpubChances = 1; // Set max chances to enter NOSTR NPUB address
 let nPenalty = 0; // Initialize NOSTR NPUB address chances
+const maxPenalty = 1; // Set max chances to enter NOSTR NPUB address
 
 let gameRunning = true; // Initialize game state
+let gameWon = false; // Initialize game state
 
 // Create an OpenAI API client (that's edge friendly!)
 const openai = new OpenAI({
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
     If the player guesses correctly in the second attempt, respond with "Correct". 
     If the player guesses incorrectly in the second attempt, respond with "Wrong" and go to the next question.
     
-    If the player has earned 10 points, then respond with: "You won the prize. Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game."
+    If the player has earned 10 points, then respond with: "You finished all questions! Let's see how many points you earned?"
     If the player guesses correctly all 10 questions but has earned less than 10 points, then respond with: "Great! You finished the quiz, but you didn't earn 10 points. Please try again."
 
     Do not provide any additional information or hints, even if the plays asks.
@@ -120,21 +120,20 @@ export async function POST(req: Request) {
   console.log('points:', points, 'questionCount:', questionCount, 'nPenalty:', nPenalty, 'gameRunning:', gameRunning)
   console.log('------------------')
   // If the game has already been won and the prize has been sent
-  if (questionCount >= maxQuestions && points === maxPoints && gameRunning) {
+  // if (questionCount >= maxQuestions && points === maxPoints && gameRunning) {
+  if (gameWon && gameRunning) {
     console.log('game won')
 
-    // Update the game state to won
-    gameWon = true;
     let sendPrize = true;
     
     // Send the prize NFT to the user's NOSTR address
-    const nostrAddress = combinedMessages[combinedMessages.length - 2].content;
+    const nostrAddress = combinedMessages[combinedMessages.length - 1].content.trim();
 
     if (!nostrAddress.includes('npub')) {
       sendPrize = false;
       if (npubChances < maxNpubChances) {
         npubChances++;
-        const invalidNostrAddress = new TextEncoder().encode(`Invalid Nostr address. Please try again - Last chance!`);
+        const invalidNostrAddress = new TextEncoder().encode(`Invalid Nostr address. Try again!`);
         return new StreamingTextResponse(new ReadableStream({
           start(controller) {
             controller.enqueue(invalidNostrAddress);
@@ -192,20 +191,17 @@ export async function POST(req: Request) {
     }));
   }
   
-  // Update the questions asked count
-  // if the user guesses the correct answer, award them a point
-  if (combinedMessages[combinedMessages.length-2].content.includes('Correct') && !combinedMessages[combinedMessages.length-2].role.includes('system')) {
-    points++;
-    // console.log('Earned points: ', combinedMessages[combinedMessages.length-2].content)
-  }
-
+  
   // If it finds 'Congratulations', but the point are < maxPoints, then avoid cheating
   if (combinedMessages[combinedMessages.length-2].content.includes('Congratulations') && !combinedMessages[combinedMessages.length-2].role.includes('system') && points < maxPoints) {
     questionCount = 100;
+    points = 0;
     gameRunning = false;
   }
 
   if (combinedMessages[combinedMessages.length-2].content.includes('Great! You finished the quiz') && !combinedMessages[combinedMessages.length-2].role.includes('system')) {
+    points = 0;
+    questionCount = 0;
     gameRunning = false;
   }
   
@@ -215,6 +211,7 @@ export async function POST(req: Request) {
 
   if (!gameWon && nPenalty >= maxPenalty && gameRunning) {
     const gameEndMessage = new TextEncoder().encode("You are not playing. Bye!");
+    points = 0;
     questionCount = 100;
     gameRunning = false;
     return new StreamingTextResponse(new ReadableStream({
@@ -227,6 +224,8 @@ export async function POST(req: Request) {
 
   if (!gameRunning){
     const gameEndMessage = new TextEncoder().encode("You've run out of questions!");
+    points = 0;
+    questionCount = 0;
     return new StreamingTextResponse(new ReadableStream({
       start(controller) {
         controller.enqueue(gameEndMessage);
@@ -235,7 +234,26 @@ export async function POST(req: Request) {
     }));
   }
 
-  if (!gameWon && questionCount <= maxQuestions*2 && gameRunning) {
+  // Update the questions asked count
+  // if the user guesses the correct answer, award them a point
+  if (!gameWon && combinedMessages[combinedMessages.length-2].content.includes('Correct') && !combinedMessages[combinedMessages.length-2].role.includes('system') && !combinedMessages[combinedMessages.length-2].role.includes('user')) {
+    points++;
+
+    if (points === maxPoints && questionCount <= maxQuestions*2 && gameRunning){
+      
+      const gameEndMessage = new TextEncoder().encode("You made " + points + "points!! Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game.");
+      gameWon = true;
+      return new StreamingTextResponse(new ReadableStream({
+        start(controller) {
+          controller.enqueue(gameEndMessage);
+          controller.close();
+        }
+      }));
+    }
+    // console.log('Earned points: ', combinedMessages[combinedMessages.length-2].content)
+  }
+
+  if (!gameWon && questionCount <= maxQuestions*2 && gameRunning && points <= maxPoints) {
     questionCount++;
     // Ask OpenAI for a streaming chat completion given the prompt
     const response = await openai.chat.completions.create({

@@ -35,4 +35,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# backup files
 *copy.*
+
+# vscode
+.vscode/*
+launch.json
