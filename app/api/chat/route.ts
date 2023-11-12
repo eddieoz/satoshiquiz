@@ -71,7 +71,8 @@ export async function POST(req: Request) {
 
     Create 10 diferent intermediate and advanced questions about Bitcoin.
     
-    For each correct answer, the player earns 1 point. Respond with "Correct", "Wrong", or "You need to be more specific". After each correct answer, inform the number of questions remaining and the total points earned (X questions left, Y points earned). 
+    For each correct answer, the player earns 1 point. Respond with "Correct", "Wrong", or "You need to be more specific". 
+    After each correct answer, inform the number of questions remaining and the total points earned (X questions left, Y points earned) and show the next question.
     
     If a player guesses incorrectly, respond with "No, it is not [answer]" and give just 1 more chance to answer correctly. If the player guesses correctly in the second attempt, respond with "Correct". If the player guesses incorrectly in the second attempt, respond with "Wrong".
     If the player guesses correctly all 10 questions, and has earned a total of 10 points, then respond with: "You won the prize. Congratulations! I will send a few satoshis to you. Please provide your Nostr NPUB address and reset the game."
@@ -108,7 +109,7 @@ export async function POST(req: Request) {
 
   console.log(combinedMessages[combinedMessages.length-1].content);
   console.log('------------------')
-  console.log(points, questionCount)
+  console.log('points:', points, 'questionCount:', questionCount, 'nPenalty:', nPenalty, 'gameRunning:', gameRunning)
   console.log('------------------')
   // If the game has already been won and the prize has been sent
   if (questionCount >= maxQuestions && points === maxPoints && gameRunning) {
