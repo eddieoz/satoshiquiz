@@ -54,7 +54,7 @@ export default function Chat() {
         >
           {// add the satoshi quiz logo
           }
-          <img src="/opengraph-image.png" alt="logo" className="h-8" />
+          <img src="/opengraph-image.png" alt="logo" className="h-32" />
         </a>
         <a
           href="https://github.com/eddieoz/satoshiquiz"
