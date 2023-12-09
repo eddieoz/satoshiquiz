@@ -128,7 +128,10 @@ export default function Chat() {
               Test your knowledge about Bitcoin with ChatGPT, learn and earn Sats!
             </h2>
             <p className="text-gray-500">
-              This is an open-source AI chatbot to demo a learn and earn game integrating with Nostr, Lightning Network and Bitcoin.
+              Open-source AI chatbot to demo a learn and earn game integrating with Nostr, Lightning Network and Bitcoin.
+            </p>
+            <p className="text-gray-500">
+              This is a proof-of-concept and a prototype. If you see something wrong, please let me know.
             </p>
           </div>
           <div className="flex flex-col space-y-4 border-t border-gray-200 bg-gray-50 p-7 sm:p-10">

@@ -1,8 +1,6 @@
 // ./app/api/chat/route.ts
 import OpenAI from 'openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
-// import { send } from 'process';
-// import fetch from 'node-fetch';
 
 let questionCount = 0;  // Initialize question count
 const maxQuestions = 10;  // Set max questions
